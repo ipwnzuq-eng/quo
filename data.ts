@@ -74,6 +74,60 @@ export const quotesData: Quote[] = [
     source: "Rozhovor pro Life Magazine",
     year: "1988"
   },
+  {
+    text: "Lidé jsou podivní: neustále je rozčilují triviální věci, ale z tak zásadní věci, jako je promarnění vlastního života, si nic nedělají.",
+    author: "Charles Bukowski",
+    source: "Kapitán odešel na oběd...",
+    year: "1998"
+  },
+  {
+    text: "Pochopte mě. Já nejsem jako obyčejný svět. Mám své šílenství, žiju v jiné dimenzi a nemám čas na věci, které nemají duši.",
+    author: "Charles Bukowski",
+    source: "Dopisy",
+    year: "–"
+  },
+  {
+    text: "Někteří lidé nikdy nezešílí. Co to musí být za příšerný život.",
+    author: "Charles Bukowski",
+    source: "Báseň: Někdy jsi tak sám...",
+    year: "–"
+  },
+  {
+    text: "Spisovatelé jsou zoufalí lidé, a když přestanou být zoufalí, přestanou být spisovateli.",
+    author: "Charles Bukowski",
+    source: "Rozhovor",
+    year: "–"
+  },
+  {
+    text: "Mám rád lidi, kteří jsou zoufalí. S těmi se cítím dobře. Nemám rád ty, co to mají v hlavě srovnané. Ti mě nudí.",
+    author: "Charles Bukowski",
+    source: "Rozhovor",
+    year: "–"
+  },
+  {
+    text: "Pít je jako zabít se a pak zase ožít.",
+    author: "Charles Bukowski",
+    source: "Rozhovor",
+    year: "–"
+  },
+  {
+    text: "Svět je plný lidí, a přesto je plný osamělosti.",
+    author: "Charles Bukowski",
+    source: "Báseň: Sám se všemi",
+    year: "–"
+  },
+  {
+    text: "Bez literatury je život peklo.",
+    author: "Charles Bukowski",
+    source: "Dopisy",
+    year: "–"
+  },
+  {
+    text: "Pesimista je člověk, který si myslí, že všichni jsou stejně hnusní jako on, a nenávidí je za to.",
+    author: "Charles Bukowski",
+    source: "Zápisky starého prasáka",
+    year: "1969"
+  },
 
   // --- Jack Kerouac (Beat Generation) ---
   {
@@ -99,6 +153,12 @@ export const quotesData: Quote[] = [
     author: "Jack Kerouac",
     source: "Lonesome Traveler",
     year: "1960"
+  },
+  {
+    text: "Žij, cestuj, riskuj, děkuj a nelituj.",
+    author: "Jack Kerouac",
+    source: "Deníky",
+    year: "–"
   },
 
   // --- Ernest Hemingway (Lost Generation) ---
@@ -132,6 +192,12 @@ export const quotesData: Quote[] = [
     source: "Komu zvoní hrana",
     year: "1940"
   },
+  {
+    text: "Odvaha je elegance pod tlakem.",
+    author: "Ernest Hemingway",
+    source: "Rozhovor",
+    year: "1929"
+  },
 
   // --- Hunter S. Thompson (Gonzo) ---
   {
@@ -148,6 +214,18 @@ export const quotesData: Quote[] = [
   },
   {
     text: "Příliš divný na to, aby žil, příliš vzácný na to, aby zemřel.",
+    author: "Hunter S. Thompson",
+    source: "Strach a hnus v Las Vegas",
+    year: "1971"
+  },
+  {
+    text: "Život by neměl být cestou do hrobu s úmyslem dorazit v pěkném a zachovalém těle, ale spíše smykem v oblaku kouře, zcela opotřebovaný, s hlasitým zvoláním: 'Páni! To byla jízda!'",
+    author: "Hunter S. Thompson",
+    source: "The Proud Highway",
+    year: "1997"
+  },
+  {
+    text: "Když je život divný, divní se stávají profesionály.",
     author: "Hunter S. Thompson",
     source: "Strach a hnus v Las Vegas",
     year: "1971"
@@ -172,6 +250,12 @@ export const quotesData: Quote[] = [
     source: "Dopisy",
     year: "–"
   },
+  {
+    text: "Existuje cíl, ale žádná cesta; to, co nazýváme cestou, je váhání.",
+    author: "Franz Kafka",
+    source: "Aforismy",
+    year: "1917"
+  },
 
   // --- George Orwell ---
   {
@@ -185,6 +269,12 @@ export const quotesData: Quote[] = [
     author: "George Orwell",
     source: "1984",
     year: "1949"
+  },
+  {
+    text: "V dobách všeobecného klamu je říkat pravdu revolučním činem.",
+    author: "George Orwell",
+    source: "Přisuzováno",
+    year: "–"
   },
 
   // --- Albert Camus ---
@@ -200,6 +290,18 @@ export const quotesData: Quote[] = [
     source: "Návrat do Tipasy",
     year: "1952"
   },
+  {
+    text: "Jediný způsob, jak se vypořádat s nesvobodným světem, je stát se tak absolutně svobodným, že vaše pouhá existence je aktem vzpoury.",
+    author: "Albert Camus",
+    source: "Zápisníky",
+    year: "1951"
+  },
+  {
+    text: "Mýtus říká, že Sisyfos je tragický hrdina. Ale musíme si představit Sisyfa šťastného.",
+    author: "Albert Camus",
+    source: "Mýtus o Sisyfovi",
+    year: "1942"
+  },
   
    // --- Oscar Wilde ---
   {
@@ -207,5 +309,259 @@ export const quotesData: Quote[] = [
     author: "Oscar Wilde",
     source: "Vějíř lady Windermerové",
     year: "1892"
+  },
+  {
+    text: "Být sám sebou; všichni ostatní jsou už zabraní.",
+    author: "Oscar Wilde",
+    source: "Přisuzováno",
+    year: "–"
+  },
+  {
+    text: "Žít je ta nejvzácnější věc na světě. Většina lidí jen existuje.",
+    author: "Oscar Wilde",
+    source: "Duše člověka za socialismu",
+    year: "1891"
+  },
+
+  // --- Friedrich Nietzsche ---
+  {
+    text: "Kdo bojuje s monstry, měl by si dát pozor, aby se tím sám nestal monstrem. A když dlouho hledíš do propasti, propast se zadívá do tebe.",
+    author: "Friedrich Nietzsche",
+    source: "Mimo dobro a zlo",
+    year: "1886"
+  },
+  {
+    text: "Ten, kdo má PROČ žít, snese téměř každé JAK.",
+    author: "Friedrich Nietzsche",
+    source: "Soumrak model",
+    year: "1889"
+  },
+  {
+    text: "Co tě nezabije, to tě posílí.",
+    author: "Friedrich Nietzsche",
+    source: "Soumrak model",
+    year: "1889"
+  },
+  {
+    text: "Bůh je mrtev! A my jsme ho zabili.",
+    author: "Friedrich Nietzsche",
+    source: "Radostná věda",
+    year: "1882"
+  },
+  {
+    text: "Bez hudby by byl život omylem.",
+    author: "Friedrich Nietzsche",
+    source: "Soumrak model",
+    year: "1889"
+  },
+
+  // --- Sylvia Plath ---
+  {
+    text: "Zhluboka jsem se nadechla a zaposlouchala se do starého chvástání svého srdce. Jsem, jsem, jsem.",
+    author: "Sylvia Plath",
+    source: "Pod skleněným zvonem",
+    year: "1963"
+  },
+  {
+    text: "Polib mě a uvidíš, jak jsem důležitá.",
+    author: "Sylvia Plath",
+    source: "Deníky",
+    year: "–"
+  },
+  {
+    text: "Cítila jsem, jak se má plíce nafukují náporem scenérie – vzduch, hory, stromy, lidé. Pomyslela jsem si: 'Tohle je ono, být šťastná.'",
+    author: "Sylvia Plath",
+    source: "Pod skleněným zvonem",
+    year: "1963"
+  },
+
+  // --- Kurt Vonnegut ---
+  {
+    text: "A tak to chodí.",
+    author: "Kurt Vonnegut",
+    source: "Jatka č. 5",
+    year: "1969"
+  },
+  {
+    text: "Jsme tím, co předstíráme, že jsme, takže musíme být opatrní v tom, co předstíráme.",
+    author: "Kurt Vonnegut",
+    source: "Matka Noc",
+    year: "1961"
+  },
+  {
+    text: "Chci stát tak blízko okraji, jak to jen jde, aniž bych přepadl. Z toho okraje vidíš nejlíp.",
+    author: "Kurt Vonnegut",
+    source: "Mechanické piano",
+    year: "1952"
+  },
+
+  // --- Chuck Palahniuk ---
+  {
+    text: "Teprve až ztratíme všechno, jsme svobodní dělat cokoliv.",
+    author: "Chuck Palahniuk",
+    source: "Klub rváčů",
+    year: "1996"
+  },
+  {
+    text: "Věci, které vlastníš, nakonec začnou vlastnit tebe.",
+    author: "Chuck Palahniuk",
+    source: "Klub rváčů",
+    year: "1996"
+  },
+  {
+    text: "Všichni umřeme. Cílem není žít věčně, cílem je vytvořit něco, co bude.",
+    author: "Chuck Palahniuk",
+    source: "Deník",
+    year: "2003"
+  },
+
+  // --- Edgar Allan Poe ---
+  {
+    text: "Vše, co vidíme nebo co se nám zdá, je jen sen ve snu.",
+    author: "Edgar Allan Poe",
+    source: "Sen ve snu",
+    year: "1849"
+  },
+  {
+    text: "Zšílel jsem, s dlouhými intervaly strašlivé příčetnosti.",
+    author: "Edgar Allan Poe",
+    source: "Dopis G. W. Eveletheovi",
+    year: "1848"
+  },
+  
+  // --- Ray Bradbury ---
+  {
+    text: "Musíš skočit z útesu a křídla si postavit cestou dolů.",
+    author: "Ray Bradbury",
+    source: "Rozhovor",
+    year: "–"
+  },
+
+  // --- Fjodor Michajlovič Dostojevskij (Nový) ---
+  {
+    text: "Peklo je utrpení z toho, že již nemůžeme milovat.",
+    author: "F. M. Dostojevskij",
+    source: "Bratři Karamazovi",
+    year: "1880"
+  },
+  {
+    text: "Všechno je v rukou člověka a všechno mu unikne jenom pro jeho vlastní zbabělost.",
+    author: "F. M. Dostojevskij",
+    source: "Zločin a trest",
+    year: "1866"
+  },
+  {
+    text: "Utrpení a bolest jsou vždy nezbytné pro velkou inteligenci a hluboké srdce.",
+    author: "F. M. Dostojevskij",
+    source: "Zločin a trest",
+    year: "1866"
+  },
+  {
+    text: "Člověk je tvor, který si zvykne na všechno, a myslím, že to je jeho nejlepší definice.",
+    author: "F. M. Dostojevskij",
+    source: "Zápisky z mrtvého domu",
+    year: "1860"
+  },
+  {
+    text: "Kdyby Bůh neexistoval, všechno by bylo dovoleno.",
+    author: "F. M. Dostojevskij",
+    source: "Bratři Karamazovi",
+    year: "1880"
+  },
+
+  // --- Emil Cioran (Nový) ---
+  {
+    text: "Není pravda, že štěstí je nudné. Nudný je jen člověk, který ho neunese.",
+    author: "Emil Cioran",
+    source: "Sylogismy hořkosti",
+    year: "1952"
+  },
+  {
+    text: "Jediný způsob, jak si zachovat důstojnost v tomto světě, je pohrdat jím.",
+    author: "Emil Cioran",
+    source: "O nevýhodě narození",
+    year: "1973"
+  },
+  {
+    text: "Žijeme na dně pekla, kterému každou vteřinu hrozí zánik.",
+    author: "Emil Cioran",
+    source: "Rozhovor",
+    year: "–"
+  },
+
+  // --- Bohumil Hrabal (Nový) ---
+  {
+    text: "Jsem vzdělán proti své vůli a tak si vymýšlím, co jsem se v knihách nedočetl.",
+    author: "Bohumil Hrabal",
+    source: "Příliš hlučná samota",
+    year: "1976"
+  },
+  {
+    text: "Život je krásný k zešílení.",
+    author: "Bohumil Hrabal",
+    source: "Taneční hodiny pro starší a pokročilé",
+    year: "1964"
+  },
+  {
+    text: "Některé skvrny nelze vyčistit bez porušení podstaty látky.",
+    author: "Bohumil Hrabal",
+    source: "Obsluhoval jsem anglického krále",
+    year: "1971"
+  },
+
+  // --- Jean-Paul Sartre (Nový) ---
+  {
+    text: "Peklo jsou ti druzí.",
+    author: "Jean-Paul Sartre",
+    source: "S vyloučením veřejnosti",
+    year: "1944"
+  },
+  {
+    text: "Svoboda je to, co uděláš s tím, co ti bylo provedeno.",
+    author: "Jean-Paul Sartre",
+    source: "Situace",
+    year: "1947"
+  },
+
+  // --- Hermann Hesse (Nový) ---
+  {
+    text: "Kdo se chce narodit, musí zničit svět.",
+    author: "Hermann Hesse",
+    source: "Demian",
+    year: "1919"
+  },
+  {
+    text: "Většina lidí je jako list, který vane a obrací se ve vzduchu, a nakonec spadne na zem. Ale někteří jsou jako hvězdy, jdou po pevné dráze, žádný vítr k nim nedosáhne.",
+    author: "Hermann Hesse",
+    source: "Siddhártha",
+    year: "1922"
+  },
+
+  // --- Virginia Woolf (Nový) ---
+  {
+    text: "Oči ostatních jsou naše vězení; jejich myšlenky jsou naše klece.",
+    author: "Virginia Woolf",
+    source: "Pondělí nebo úterý",
+    year: "1921"
+  },
+  {
+    text: "Zamkněte si své knihovny, jestli chcete, ale není žádná brána, žádný zámek, žádná závora, kterou byste mohli zavřít svobodu mé mysli.",
+    author: "Virginia Woolf",
+    source: "Vlastní pokoj",
+    year: "1929"
+  },
+
+   // --- Arthur Schopenhauer (Nový) ---
+  {
+    text: "Život je kyvadlo, které se houpe mezi bolestí a nudou.",
+    author: "Arthur Schopenhauer",
+    source: "Svět jako vůle a představa",
+    year: "1818"
+  },
+  {
+    text: "Osud míchá karty, my hrajeme.",
+    author: "Arthur Schopenhauer",
+    source: "Aforismy k životní moudrosti",
+    year: "1851"
   }
 ];
