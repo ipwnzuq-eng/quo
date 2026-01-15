@@ -39,24 +39,24 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
       {/* Author and Source Block */}
       <div 
         className={`
-          flex flex-col items-center
+          flex flex-col items-center w-full
           transition-all duration-1000 ease-out delay-[200ms]
           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
         `}
       >
         {/* Author Name - Enhanced Visibility */}
-        <div className="font-lora italic font-medium text-white/90 text-[clamp(1.1rem,4vw,1.4rem)] mb-2 tracking-tight">
+        <div className="font-lora italic font-medium text-white/90 text-[clamp(1.1rem,4vw,1.4rem)] mb-1 sm:mb-2 tracking-tight">
           — Charles Bukowski
         </div>
         
-        {/* Source Metadata */}
-        <div className="font-oswald text-[0.65rem] sm:text-[0.75rem] text-bukowski-meta uppercase tracking-[0.2em] border-t border-white/10 pt-2 px-4">
-          {quote.source} {quote.year && quote.year !== '–' ? `(${quote.year})` : ''}
+        {/* Source Metadata - Optimized for all screens */}
+        <div className="font-oswald text-[clamp(0.6rem,2.5vw,0.85rem)] text-bukowski-meta uppercase tracking-[0.25em] border-t border-white/10 pt-2 px-2 sm:px-6 max-w-[90vw] leading-relaxed">
+          {quote.source} {quote.year && quote.year !== '–' ? <span className="opacity-40 ml-1">({quote.year})</span> : ''}
         </div>
 
         {/* AI Sources / Grounding */}
         {quote.isAI && quote.sources && quote.sources.length > 0 && (
-          <div className="mt-6 flex flex-wrap justify-center gap-x-3 gap-y-2 max-w-xs">
+          <div className="mt-6 flex flex-wrap justify-center gap-x-2 gap-y-2 max-w-xs px-4">
             <span className="text-[8px] text-white/10 uppercase tracking-widest w-full mb-1">Ověřeno v archivech:</span>
             {quote.sources.map((src, idx) => (
               <a 
@@ -64,10 +64,10 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
                 href={src.uri} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-[9px] text-white/30 hover:text-white/80 border border-white/5 px-2 py-0.5 rounded-sm bg-white/5 transition-all"
+                className="text-[8px] sm:text-[9px] text-white/30 hover:text-white/80 border border-white/5 px-2 py-0.5 rounded-sm bg-white/5 transition-all whitespace-nowrap"
                 onClick={e => e.stopPropagation()}
               >
-                {src.title.length > 18 ? src.title.substring(0, 15) + '...' : src.title}
+                {src.title.length > 15 ? src.title.substring(0, 12) + '...' : src.title}
               </a>
             ))}
           </div>
