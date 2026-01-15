@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Bukowski – Smoke & Quotes</title>
+    <meta name="description" content="Drsné citáty Charlese Bukowskiho s atmosférou">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #050505;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        /* Custom Keyframes for Fog Animation */
+        @keyframes fog {
+            0% { transform: translate3d(-200vw, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+
+        .animate-fog {
+            animation: fog 60s linear infinite;
+        }
+
+        .animate-fog-reverse {
+            animation: fog 40s linear infinite reverse;
+        }
+
+        /* Custom Pulse Animation */
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+        
+        .animate-subtle-pulse {
+            animation: subtle-pulse 4s infinite;
+        }
+
+        /* Ember / Particle Animation */
+        @keyframes ember-float {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(1);
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--drift-x), var(--drift-y)) scale(0);
+            }
+        }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              lora: ['Lora', 'serif'],
+              oswald: ['Oswald', 'sans-serif'],
+            },
+            colors: {
+              bukowski: {
+                bg: '#050505',
+                text: '#dcdcdc',
+                meta: '#888',
+                accent: '#555',
+              }
+            }
+          }
+        }
+      }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
