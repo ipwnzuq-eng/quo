@@ -14,29 +14,33 @@ const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
   const y = (parallaxY - 0.5) * 2;
 
   // Parallax offsets calculation (pixels)
-  // Deeper layers move less, foreground layers move more
-  const backX = x * -20;
-  const backY = y * -20;
+  // Significantly increased ranges for immersive depth
+  // Background moves slightly (distant)
+  const backX = x * -35;
+  const backY = y * -35;
   
-  const midX = x * -45;
-  const midY = y * -45;
+  // Midground moves moderately
+  const midX = x * -80;
+  const midY = y * -80;
   
-  const foreX = x * -90;
-  const foreY = y * -90;
+  // Foreground moves heavily (close to viewer)
+  const foreX = x * -160;
+  const foreY = y * -160;
 
-  // Tilt effect for 3D feel
-  const rotateX = -y * 2; // Inverted Y for natural tilt
-  const rotateY = x * 2;
+  // Enhanced Tilt effect for 3D feel
+  // Increased rotation multiplier for more dramatic perspective shifts
+  const rotateX = -y * 8; // Inverted Y for natural tilt
+  const rotateY = x * 8;
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#050505] perspective-1000">
       
-      {/* Dynamic Lighting / Vignette that follows mouse */}
+      {/* Dynamic Lighting / Vignette that follows mouse - amplified movement */}
       <div 
-        className="absolute inset-[-50%] w-[200%] h-[200%] z-[5] pointer-events-none mix-blend-soft-light transition-transform duration-300 ease-out"
+        className="absolute inset-[-50%] w-[200%] h-[200%] z-[5] pointer-events-none mix-blend-soft-light transition-transform duration-200 ease-out"
         style={{
-          background: `radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 100%)`,
-          transform: `translate3d(${x * -15}%, ${y * -15}%, 0)`
+          background: `radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.6) 100%)`,
+          transform: `translate3d(${x * -30}%, ${y * -30}%, 0)`
         }}
       />
 
@@ -51,15 +55,15 @@ const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
 
       {/* 3D Container for Smoke Layers */}
       <div 
-        className="relative w-full h-full transition-transform duration-700 cubic-bezier(0.1, 0.5, 0.5, 1)"
+        className="relative w-full h-full transition-transform duration-500 cubic-bezier(0.1, 0.5, 0.5, 1)"
         style={{
-          transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`
+          transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.15)`
         }}
       >
-        {/* Layer 1 - Deep Background (Slow, Dark) */}
+        {/* Layer 1 - Deep Background (Slow, Dark, Far away) */}
         <div 
           className="absolute inset-[-40%] w-[180%] h-[180%] transition-transform duration-1000 ease-out will-change-transform opacity-50"
-          style={{ transform: `translate3d(${backX}px, ${backY}px, 0) scale(1.1)` }}
+          style={{ transform: `translate3d(${backX}px, ${backY}px, -60px) scale(1.1)` }}
         >
           <div 
             className="absolute top-0 left-0 w-full h-full animate-fog"
@@ -86,10 +90,13 @@ const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
           />
         </div>
 
-        {/* Layer 3 - Foreground (Fast, Whispy, creates depth) */}
+        {/* Layer 3 - Foreground (Fast, Whispy, Close to viewer) */}
         <div 
-          className="absolute inset-[-40%] w-[180%] h-[180%] transition-transform duration-[600ms] ease-out will-change-transform opacity-20 pointer-events-none"
-          style={{ transform: `translate3d(${foreX}px, ${foreY}px, 50px)` }}
+          className="absolute inset-[-40%] w-[180%] h-[180%] transition-transform duration-[400ms] ease-out will-change-transform opacity-20 pointer-events-none"
+          style={{ 
+            // Added slight rotation based on X movement for turbulence effect
+            transform: `translate3d(${foreX}px, ${foreY}px, 80px) rotate(${x * 4}deg)` 
+          }}
         >
            <div 
             className="absolute top-0 left-0 w-full h-full animate-fog"

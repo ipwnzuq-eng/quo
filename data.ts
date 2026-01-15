@@ -643,5 +643,105 @@ export const quotesData: Quote[] = [
     author: "H.P. Lovecraft",
     source: "Nadpřirozená hrůza v literatuře",
     year: "1927"
+  },
+
+  // --- Antoine de Saint-Exupéry ---
+  {
+    text: "Správně vidíme jen srdcem. Co je důležité, je očím neviditelné.",
+    author: "A. de Saint-Exupéry",
+    source: "Malý princ",
+    year: "1943"
+  },
+  {
+    text: "Stáváš se navždy zodpovědným za to, cos k sobě připoutal.",
+    author: "A. de Saint-Exupéry",
+    source: "Malý princ",
+    year: "1943"
+  },
+  {
+    text: "Člověk se vydává v nebezpečí, že bude trochu plakat, když se nechal ochočit.",
+    author: "A. de Saint-Exupéry",
+    source: "Malý princ",
+    year: "1943"
+  },
+
+  // --- Jiří Wolker (Proletářská poezie) ---
+  {
+    text: "Smrt není zlá, smrt je jen kus života těžkého. Co strašné je, co zlé je, to umírání je.",
+    author: "Jiří Wolker",
+    source: "Balada o očích topičových",
+    year: "1922"
+  },
+  {
+    text: "Až umřu, nic na tomto světě se nestane a nezmění, jen srdcí několik se zachvěje v rose jak k ránu květiny.",
+    author: "Jiří Wolker",
+    source: "Umírající",
+    year: "1924"
+  },
+  {
+    text: "Nejhlubší v srdci, co je ukryto, to na slova se pře těžko, a když se to už na rty prodere, tož je to ztichlé, všechno, všechno.",
+    author: "Jiří Wolker",
+    source: "Těžká hodina",
+    year: "1922"
+  },
+
+  // --- Louis-Ferdinand Céline (Syrový realismus) ---
+  {
+    text: "Pravda je agónie, která nekončí. Pravda je smrt.",
+    author: "L.-F. Céline",
+    source: "Cesta do hlubin noci",
+    year: "1932"
+  },
+  {
+    text: "Láska je nekonečno, které se stáhlo do velikosti pudla.",
+    author: "L.-F. Céline",
+    source: "Cesta do hlubin noci",
+    year: "1932"
+  },
+  {
+    text: "Možná je to přesně tohle, co v životě hledáme, jen to, tu největší možnou bolest, aby se člověk stal sám sebou, ještě dřív než umře.",
+    author: "L.-F. Céline",
+    source: "Cesta do hlubin noci",
+    year: "1932"
+  },
+
+  // --- Henry Miller (Zakázaná literatura) ---
+  {
+    text: "Nemám žádné peníze, žádné zdroje, žádné naděje. Jsem nejšťastnější člověk na světě.",
+    author: "Henry Miller",
+    source: "Obratník Raka",
+    year: "1934"
+  },
+  {
+    text: "Cílem života není žít věčně, ale vytvořit něco, co věčně žít bude.",
+    author: "Henry Miller",
+    source: "Přisuzováno",
+    year: "–"
+  },
+  {
+    text: "Každý okamžik je zlatý pro toho, kdo ho umí rozpoznat.",
+    author: "Henry Miller",
+    source: "Big Sur a pomeranče Hieronyma Bosche",
+    year: "1957"
+  },
+
+  // --- Diogenés ze Sinópé (Kynismus) ---
+  {
+    text: "Ustup mi ze slunce.",
+    author: "Diogenés ze Sinópé",
+    source: "Reakce Alexandrovi Velikému",
+    year: "cca 330 př. n. l."
+  },
+  {
+    text: "Hledám člověka.",
+    author: "Diogenés ze Sinópé",
+    source: "S lucernou za bílého dne",
+    year: "–"
+  },
+  {
+    text: "V bohatém domě není kam si odplivnout, leda hostiteli do tváře.",
+    author: "Diogenés ze Sinópé",
+    source: "Aforismy",
+    year: "–"
   }
 ];

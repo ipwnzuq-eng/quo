@@ -41,19 +41,19 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
         )}
       </div>
 
-      {/* Quote Text - Cinematic Reveal */}
+      {/* Quote Text - Cinematic Reveal with Sway */}
       <div 
         className={`
           relative font-lora font-normal text-bukowski-text hyphens-auto
           will-change-[opacity,filter,transform]
-          transition-all duration-[1400ms] cubic-bezier(0.2, 0.0, 0.2, 1)
+          transition-all duration-[1600ms] cubic-bezier(0.2, 0.0, 0.2, 1)
           ${isVeryLong ? 'text-[clamp(1rem,3.5vw,1.4rem)] leading-[1.6]' : 
             isLong ? 'text-[clamp(1.1rem,4vw,1.8rem)] leading-[1.5]' : 
             isShort ? 'text-[clamp(1.6rem,6vw,2.8rem)] leading-[1.3]' : 
             'text-[clamp(1.3rem,5vw,2.2rem)] leading-[1.45]'}
           ${isVisible 
             ? 'opacity-100 blur-0 scale-100 translate-y-0' 
-            : 'opacity-0 blur-md scale-[0.98] translate-y-2'}
+            : 'opacity-0 blur-[4px] scale-[0.92] translate-y-8'}
         `}
         style={{ 
           wordBreak: 'break-word', 
@@ -61,15 +61,18 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
           textShadow: '0 4px 24px rgba(0,0,0,0.6)' 
         }}
       >
-        “{quote.text}”
+        {/* Inner wrapper for independent floating animation */}
+        <div className="animate-float-slow w-full">
+          “{quote.text}”
+        </div>
       </div>
 
       {/* Author and Source Block - Redesigned for hierarchy */}
       <div 
         className={`
           flex flex-col items-center w-full mt-8 sm:mt-12
-          transition-all duration-[1200ms] ease-out delay-[400ms]
-          ${isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-4 blur-sm'}
+          transition-all duration-[1400ms] ease-out delay-[300ms]
+          ${isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-sm'}
         `}
       >
         {/* Author Name - Linked */}
