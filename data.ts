@@ -107,11 +107,6 @@ export const quotesData: Quote[] = [
     year: "–"
   },
   {
-    text: "Největší vynález lidstva je pivo. Kolo je sice taky fajn, ale k rybě s hranolkama se moc nehodí.",
-    source: "Zápisky starého prasáka",
-    year: "1969"
-  },
-  {
     text: "Ukažte mi člověka, který žije sám a má věčně uklizenou kuchyň, a já vám ukážu člověka, co má v sobě něco hluboce zvráceného.",
     source: "Faktótum",
     year: "1975"
@@ -135,5 +130,80 @@ export const quotesData: Quote[] = [
     text: "Láska je to, co se stane, když se mlha zvedne.",
     source: "Báseň: Láska",
     year: "–"
+  },
+  {
+    text: "Někdy ráno vstanete a říkáte si: Dneska to prostě nedám. Ale pak se podíváte do zrcadla a ten parchant na vás mrkne.",
+    source: "Zápisky starého prasáka",
+    year: "1969"
+  },
+  {
+    text: "Styl je odpověď na všechno. Svěží způsob, jak přistupovat k nudné nebo nebezpečné věci.",
+    source: "Báseň: Styl",
+    year: "–"
+  },
+  {
+    text: "Cesta do pekla je dlážděná dobrými úmysly, ale ta do nebe je plná zkurvených uzavírek.",
+    source: "Rozhovor",
+    year: "1984"
+  },
+  {
+    text: "Poezie je to, co se stane, když se nic jiného dít nemůže.",
+    source: "Básně",
+    year: "–"
+  },
+  {
+    text: "Lidstvo, to je parta ubožáků, co se snaží přežít v pekle, který si sami postavili.",
+    source: "Faktótum",
+    year: "1975"
+  },
+  {
+    text: "Genialita je schopnost říkat hluboký věci jednoduchým způsobem.",
+    source: "Zápisky starého prasáka",
+    year: "1969"
+  },
+  {
+    text: "Moji hrdinové jsou ti, co se ráno probudí, vědí, že to bude stát za hovno, a stejně vstanou.",
+    source: "Rozhovor",
+    year: "1987"
+  },
+  {
+    text: "Samota je občas ten nejlepší společník, aspoň vám nekecá do pití.",
+    source: "Ženy",
+    year: "1978"
+  },
+  {
+    text: "Život je jen řada malejch vítězství nad velkejma sračkama.",
+    source: "Poštovní úřad",
+    year: "1971"
+  },
+  {
+    text: "Vzdělání je pro lidi to, co je pro psa obojek. Drží je to zkrátka, aby nekousali.",
+    source: "Šunkový nářez",
+    year: "1982"
+  },
+  {
+    text: "Svoboda znamená nemuset nic vysvětlovat lidem, který by to stejně nepochopili.",
+    source: "Dopis",
+    year: "1963"
+  },
+  {
+    text: "Svět je plnej lidí, co čekají na něco, co nikdy nepřijde, a přitom si nevšimnou, že už to dávno propili.",
+    source: "Ženy",
+    year: "1978"
+  },
+  {
+    text: "Psaní je jako hovno. Musíte se na to soustředit, jinak to nevyjde.",
+    source: "Rozhovor",
+    year: "1981"
+  },
+  {
+    text: "Základem všeho je vydržet. Většina lidí to vzdá těsně předtím, než se stane zázrak nebo než přijde exekutor.",
+    source: "Faktótum",
+    year: "1975"
+  },
+  {
+    text: "Dobrý spisovatel ví, kdy přestat. Ten skvělý ví, kdy ani nezačínat.",
+    source: "Zápisky starého prasáka",
+    year: "1969"
   }
 ];

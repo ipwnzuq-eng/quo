@@ -1,27 +1,27 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SmokeBackground from './components/SmokeBackground';
 import QuoteDisplay from './components/QuoteDisplay';
-import Toast from './components/Toast';
 import EmberBurst from './components/EmberBurst';
 import { quotesData } from './data';
 import { Quote } from './types';
+import { GoogleGenAI } from '@google/genai';
 
 const App: React.FC = () => {
-  const [currentQuote, setCurrentQuote] = useState<Quote | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [initialIndex] = useState(() => Math.floor(Math.random() * quotesData.length));
+  const [currentQuote, setCurrentQuote] = useState<Quote | null>(quotesData[initialIndex]);
+  const [isVisible, setIsVisible] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [lastIndex, setLastIndex] = useState(-1);
-  const [isShareAnimating, setIsShareAnimating] = useState(false);
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
+  const [lastIndex, setLastIndex] = useState(initialIndex);
   const [burstTrigger, setBurstTrigger] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
   const triggerNewQuote = useCallback(() => {
-    if (isAnimating) return;
+    if (isAnimating || isSearchLoading) return;
     
     setIsAnimating(true);
-    setIsVisible(false); // Start fade out
+    setIsVisible(false);
 
-    // Wait for fade out animation
     setTimeout(() => {
       let randomIndex;
       do {
@@ -30,108 +30,131 @@ const App: React.FC = () => {
 
       setLastIndex(randomIndex);
       setCurrentQuote(quotesData[randomIndex]);
-      
-      // Start fade in
       setIsVisible(true);
-      // Trigger particle burst
       setBurstTrigger(prev => prev + 1);
 
-      // Unlock after fade in
       setTimeout(() => {
         setIsAnimating(false);
       }, 1000);
-
     }, 800);
-  }, [isAnimating, lastIndex]);
+  }, [isAnimating, isSearchLoading, lastIndex]);
 
-  // Initial load
-  useEffect(() => {
-    // Small delay to ensure smooth first render
-    const timer = setTimeout(() => {
-      triggerNewQuote();
-    }, 100);
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Run only once
+  const searchAIQuote = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isSearchLoading || isAnimating) return;
 
-  // Keyboard handler
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space' || e.code === 'Enter') {
-        e.preventDefault(); // Prevent scrolling on space
-        triggerNewQuote();
-      }
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [triggerNewQuote]);
+    setIsSearchLoading(true);
+    setIsVisible(false);
 
-  const handleShare = async (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering new quote
-    if (!currentQuote) return;
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const response = await ai.models.generateContent({
+        model: 'gemini-3-flash-preview',
+        contents: "Najdi jeden unikátní a drsný citát Charlese Bukowského v češtině. Preferuj kratší a údernější citáty (do 150 znaků). Výsledek vrať přesně ve formátu 'Citát | Zdroj | Rok'. Nepoužívej uvozovky v textu citátu.",
+        config: {
+          tools: [{ googleSearch: {} }],
+        },
+      });
 
-    // Trigger button animation
-    setIsShareAnimating(true);
-    setTimeout(() => setIsShareAnimating(false), 200);
+      const text = response.text || "";
+      const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+      const sources = groundingChunks
+        .filter(chunk => chunk.web)
+        .map(chunk => ({
+          title: chunk.web?.title || 'Zdroj',
+          uri: chunk.web?.uri || '#'
+        }));
 
-    const textToShare = `„${currentQuote.text}“\n— Charles Bukowski`;
+      // Basic parsing of "Text | Source | Year"
+      const parts = text.split('|').map(p => p.trim());
+      const aiQuote: Quote = {
+        text: parts[0] || "Někdy prostě jen zíráte do zdi a zeď zírá na vás. A oba víte, že má pravdu.",
+        source: parts[1] || "Z hlubin webu",
+        year: parts[2] || "Dnes",
+        isAI: true,
+        sources: sources.length > 0 ? sources : undefined
+      };
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Bukowski Citát',
-          text: textToShare,
-          url: window.location.href
-        });
-      } catch (err) {
-        console.log('Sharing cancelled');
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(textToShare);
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
-      } catch (err) {
-        console.error('Failed to copy', err);
-      }
+      setCurrentQuote(aiQuote);
+      setIsVisible(true);
+      setBurstTrigger(prev => prev + 1);
+    } catch (error) {
+      console.error("AI Search failed", error);
+      const randomIndex = Math.floor(Math.random() * quotesData.length);
+      setCurrentQuote(quotesData[randomIndex]);
+      setIsVisible(true);
+    } finally {
+      setIsSearchLoading(false);
+      setIsAnimating(false);
     }
   };
 
+  const handleMouseMove = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    let clientX, clientY;
+    if ('touches' in e) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    setMousePos({ x: clientX / window.innerWidth, y: clientY / window.innerHeight });
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space' || e.code === 'Enter') {
+        e.preventDefault();
+        triggerNewQuote();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [triggerNewQuote]);
+
   return (
     <div 
-      className="relative w-full h-screen bg-bukowski-bg text-bukowski-text flex flex-col justify-center items-center overflow-hidden cursor-pointer select-none"
+      className="relative w-full h-screen bg-bukowski-bg text-bukowski-text flex flex-col justify-center items-center overflow-hidden cursor-pointer select-none touch-manipulation"
       onClick={triggerNewQuote}
+      onMouseMove={handleMouseMove}
+      onTouchMove={handleMouseMove}
+      style={{ touchAction: 'manipulation' }}
     >
-      <SmokeBackground />
+      <SmokeBackground 
+        parallaxX={mousePos.x} 
+        parallaxY={mousePos.y} 
+        isSearching={isSearchLoading}
+      />
       <EmberBurst trigger={burstTrigger} />
       
-      <QuoteDisplay quote={currentQuote} isVisible={isVisible} />
+      {isSearchLoading ? (
+        <div className="z-20 font-oswald text-lg sm:text-xl uppercase tracking-[0.3em] text-white/40 animate-pulse px-4 text-center">
+          Hledám v zapomnění...
+        </div>
+      ) : (
+        <QuoteDisplay quote={currentQuote} isVisible={isVisible} />
+      )}
       
-      <Toast show={showToast} message="Zkopírováno do schránky" />
-
       {/* Tap Hint */}
-      <div className="absolute bottom-[max(2rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-10 font-oswald text-[0.7rem] uppercase tracking-[0.2em] text-[#444] pointer-events-none animate-subtle-pulse">
-        Další lok
-      </div>
+      {!isSearchLoading && (
+        <div className="absolute bottom-[max(2rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-10 font-oswald text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-[#444] pointer-events-none animate-subtle-pulse whitespace-nowrap">
+          Další lok
+        </div>
+      )}
 
-      {/* Action Button */}
-      <div className="fixed bottom-8 right-8 z-20 flex gap-4">
-        <button 
-          className={`
-            group bg-transparent border border-white/20 rounded-full w-12 h-12 
-            flex items-center justify-center text-white cursor-pointer 
-            transition-all duration-300 backdrop-blur-[5px] 
-            hover:border-white/60 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]
-            ${isShareAnimating ? 'scale-90 bg-white/30' : 'hover:scale-110 hover:bg-white/20'}
-          `}
-          onClick={handleShare}
-          aria-label="Sdílet citát"
-        >
-          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current transition-transform duration-300 group-hover:rotate-12">
-            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-          </svg>
-        </button>
-      </div>
+      {/* AI Search Button */}
+      <button 
+        onClick={searchAIQuote}
+        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-center text-white/30 hover:text-white/80 hover:border-white/40 transition-all active:scale-95 group"
+        title="Objevit zapomenutý citát (AI)"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5 group-hover:scale-110 transition-transform">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <path d="M11 8v6"></path>
+          <path d="M8 11h6"></path>
+        </svg>
+      </button>
     </div>
   );
 };
