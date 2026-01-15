@@ -128,6 +128,30 @@ export const quotesData: Quote[] = [
     source: "Zápisky starého prasáka",
     year: "1969"
   },
+  {
+    text: "Všichni umřeme. Všichni. To je ale cirkus! Jen to by nás mělo přimět milovat jeden druhého, ale neděje se to.",
+    author: "Charles Bukowski",
+    source: "Kapitán odešel na oběd...",
+    year: "1998"
+  },
+  {
+    text: "Problém tohoto světa je, že inteligentní lidé jsou plní pochybností, zatímco ti hloupí jsou plní sebevědomí.",
+    author: "Charles Bukowski",
+    source: "Dopisy",
+    year: "–"
+  },
+  {
+    text: "Nenenávidím lidi, jen se cítím líp, když nejsou poblíž.",
+    author: "Charles Bukowski",
+    source: "Barfly",
+    year: "1987"
+  },
+  {
+    text: "Lidi k sobě nejsou hodní. Lidi k sobě nejsou hodní. Lidi k sobě nejsou hodní.",
+    author: "Charles Bukowski",
+    source: "Báseň: Lidi k sobě nejsou hodní",
+    year: "–"
+  },
 
   // --- Jack Kerouac (Beat Generation) ---
   {
@@ -437,7 +461,7 @@ export const quotesData: Quote[] = [
     year: "–"
   },
 
-  // --- Fjodor Michajlovič Dostojevskij (Nový) ---
+  // --- Fjodor Michajlovič Dostojevskij ---
   {
     text: "Peklo je utrpení z toho, že již nemůžeme milovat.",
     author: "F. M. Dostojevskij",
@@ -469,7 +493,7 @@ export const quotesData: Quote[] = [
     year: "1880"
   },
 
-  // --- Emil Cioran (Nový) ---
+  // --- Emil Cioran ---
   {
     text: "Není pravda, že štěstí je nudné. Nudný je jen člověk, který ho neunese.",
     author: "Emil Cioran",
@@ -489,7 +513,7 @@ export const quotesData: Quote[] = [
     year: "–"
   },
 
-  // --- Bohumil Hrabal (Nový) ---
+  // --- Bohumil Hrabal ---
   {
     text: "Jsem vzdělán proti své vůli a tak si vymýšlím, co jsem se v knihách nedočetl.",
     author: "Bohumil Hrabal",
@@ -509,7 +533,7 @@ export const quotesData: Quote[] = [
     year: "1971"
   },
 
-  // --- Jean-Paul Sartre (Nový) ---
+  // --- Jean-Paul Sartre ---
   {
     text: "Peklo jsou ti druzí.",
     author: "Jean-Paul Sartre",
@@ -523,7 +547,7 @@ export const quotesData: Quote[] = [
     year: "1947"
   },
 
-  // --- Hermann Hesse (Nový) ---
+  // --- Hermann Hesse ---
   {
     text: "Kdo se chce narodit, musí zničit svět.",
     author: "Hermann Hesse",
@@ -537,7 +561,7 @@ export const quotesData: Quote[] = [
     year: "1922"
   },
 
-  // --- Virginia Woolf (Nový) ---
+  // --- Virginia Woolf ---
   {
     text: "Oči ostatních jsou naše vězení; jejich myšlenky jsou naše klece.",
     author: "Virginia Woolf",
@@ -551,7 +575,7 @@ export const quotesData: Quote[] = [
     year: "1929"
   },
 
-   // --- Arthur Schopenhauer (Nový) ---
+   // --- Arthur Schopenhauer ---
   {
     text: "Život je kyvadlo, které se houpe mezi bolestí a nudou.",
     author: "Arthur Schopenhauer",
@@ -563,5 +587,61 @@ export const quotesData: Quote[] = [
     author: "Arthur Schopenhauer",
     source: "Aforismy k životní moudrosti",
     year: "1851"
+  },
+
+  // --- Milan Kundera (Nový) ---
+  {
+    text: "Jednou je nikdy. Co se stane jen jednou, jako by se nestalo nikdy.",
+    author: "Milan Kundera",
+    source: "Nesnesitelná lehkost bytí",
+    year: "1984"
+  },
+  {
+    text: "Tíha, nutnost a hodnota jsou tři pojmy vnitřně spjaté: jen to, co je nutné, je těžké, jen to, co váží, má hodnotu.",
+    author: "Milan Kundera",
+    source: "Nesnesitelná lehkost bytí",
+    year: "1984"
+  },
+  {
+    text: "Člověk, který chce být silný, se musí naučit žít sám se sebou.",
+    author: "Milan Kundera",
+    source: "Nesmrtelnost",
+    year: "1990"
+  },
+
+  // --- Charles Baudelaire (Nový) ---
+  {
+    text: "Člověk musí být neustále opilý. To je jediné řešení. Aby neucítil strašlivé břemeno času... Vínem, poezií nebo ctností, jak je libo. Ale opíjejte se.",
+    author: "Charles Baudelaire",
+    source: "Malé básně v próze",
+    year: "1869"
+  },
+  {
+    text: "Největší lstí ďábla je přesvědčit vás, že neexistuje.",
+    author: "Charles Baudelaire",
+    source: "Pařížský splín",
+    year: "1869"
+  },
+
+  // --- Cormac McCarthy (Nový) ---
+  {
+    text: "Nikdy nevíš, před jakou horší smůlou tě tvá smůla zachránila.",
+    author: "Cormac McCarthy",
+    source: "Tahle země není pro starý",
+    year: "2005"
+  },
+  {
+    text: "Bůh není a my jsme jeho proroci.",
+    author: "Cormac McCarthy",
+    source: "Cesta",
+    year: "2006"
+  },
+
+  // --- H.P. Lovecraft (Nový) ---
+  {
+    text: "Nejstarší a nejsilnější emocí lidstva je strach, a nejstarším a nejsilnějším druhem strachu je strach z neznáma.",
+    author: "H.P. Lovecraft",
+    source: "Nadpřirozená hrůza v literatuře",
+    year: "1927"
   }
 ];
