@@ -18,14 +18,14 @@ interface EmberBurstProps {
   trigger: number;
 }
 
-const EmberBurst: React.FC<EmberBurstProps> = ({ trigger }) => {
+const EmberBurst: React.FC<EmberBurstProps> = React.memo(({ trigger }) => {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
     if (trigger === 0) return;
 
     const newParticles: Particle[] = [];
-    const count = 45; // Increased count for better distribution
+    const count = 45; 
 
     for (let i = 0; i < count; i++) {
       const type = Math.random();
@@ -51,14 +51,14 @@ const EmberBurst: React.FC<EmberBurstProps> = ({ trigger }) => {
 
       newParticles.push({
         id: Math.random(),
-        x: 50 + (Math.random() - 0.5) * 40, // More concentrated in center
+        x: 50 + (Math.random() - 0.5) * 40,
         y: 55 + (Math.random() - 0.5) * 30,
         size,
         color,
-        duration: 2 + Math.random() * 2, // Slower, more atmospheric
+        duration: 2 + Math.random() * 2,
         delay: Math.random() * 0.5,
-        driftX: (Math.random() - 0.5) * 200, // Wider drift
-        driftY: -100 - Math.random() * 250, // Upward movement
+        driftX: (Math.random() - 0.5) * 200, 
+        driftY: -100 - Math.random() * 250, 
         maxOpacity,
         flicker
       });
@@ -72,6 +72,9 @@ const EmberBurst: React.FC<EmberBurstProps> = ({ trigger }) => {
 
     return () => clearTimeout(timer);
   }, [trigger]);
+
+  // If no particles, render nothing to save DOM nodes
+  if (particles.length === 0) return null;
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-[12]">
@@ -92,11 +95,12 @@ const EmberBurst: React.FC<EmberBurstProps> = ({ trigger }) => {
             ['--drift-x' as any]: `${p.driftX}px`,
             ['--drift-y' as any]: `${p.driftY}px`,
             ['--max-opacity' as any]: p.maxOpacity,
+            willChange: 'transform, opacity' // Hint to browser for optimization
           }}
         />
       ))}
     </div>
   );
-};
+});
 
 export default EmberBurst;

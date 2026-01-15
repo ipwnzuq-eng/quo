@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import SmokeBackground from './components/SmokeBackground';
 import QuoteDisplay from './components/QuoteDisplay';
 import EmberBurst from './components/EmberBurst';
@@ -14,6 +14,9 @@ const App: React.FC = () => {
   const [burstTrigger, setBurstTrigger] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+  // Ref to track if a frame update is already scheduled
+  const frameRequestRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Listen for PWA install prompt
@@ -58,16 +61,41 @@ const App: React.FC = () => {
     }, 800);
   }, [isAnimating, lastIndex]);
 
+  // Optimized Mouse Move Handler using requestAnimationFrame
   const handleMouseMove = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    let clientX, clientY;
-    if ('touches' in e) {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
-    } else {
-      clientX = e.clientX;
-      clientY = e.clientY;
-    }
-    setMousePos({ x: clientX / window.innerWidth, y: clientY / window.innerHeight });
+    // If a frame is already requested, skip this event to prevent thrashing
+    if (frameRequestRef.current !== null) return;
+
+    frameRequestRef.current = requestAnimationFrame(() => {
+      let clientX, clientY;
+      if ('touches' in e) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        // @ts-ignore - TS doesn't strictly infer the union type properties here perfectly without narrowing
+        clientX = (e as React.MouseEvent).clientX;
+        // @ts-ignore
+        clientY = (e as React.MouseEvent).clientY;
+      }
+
+      // Calculate normalized position
+      const x = clientX / window.innerWidth;
+      const y = clientY / window.innerHeight;
+
+      setMousePos({ x, y });
+      
+      // Reset the frame request
+      frameRequestRef.current = null;
+    });
+  }, []);
+
+  // Cleanup rAF on unmount
+  useEffect(() => {
+    return () => {
+      if (frameRequestRef.current !== null) {
+        cancelAnimationFrame(frameRequestRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
