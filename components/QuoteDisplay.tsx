@@ -15,6 +15,12 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
   const isLong = len > 120;
   const isShort = len < 60;
 
+  // Helper to generate search URLs
+  const getSearchUrl = (query: string, context: string = '') => {
+    const q = encodeURIComponent(`${query} ${context}`.trim());
+    return `https://www.google.com/search?q=${q}`;
+  };
+
   return (
     <div className="relative z-10 w-full flex flex-col justify-center items-center text-center 
       px-5 xs:px-8 sm:px-16 md:px-24 
@@ -66,9 +72,20 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
           ${isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-4 blur-sm'}
         `}
       >
-        {/* Author Name - Bolder and brighter */}
-        <div className="font-lora italic font-medium text-white/90 text-[clamp(1.1rem,4vw,1.5rem)] mb-4 tracking-tight drop-shadow-md">
-          — {quote.author}
+        {/* Author Name - Linked */}
+        <div className="mb-4 drop-shadow-md relative group">
+          <a 
+            href={getSearchUrl(quote.author, 'spisovatel')}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="font-lora italic font-medium text-white/90 text-[clamp(1.1rem,4vw,1.5rem)] tracking-tight 
+                       transition-all duration-300 border-b border-transparent 
+                       hover:text-white hover:border-white/30 cursor-pointer"
+            title={`Vyhledat autora: ${quote.author}`}
+          >
+            — {quote.author}
+          </a>
         </div>
         
         {/* Metadata Container */}
@@ -77,18 +94,35 @@ const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
           {/* Subtle Divider */}
           <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent mb-4"></div>
 
-          {/* Source & Year - Stacked on mobile, Row on Desktop */}
+          {/* Source & Year - Linked */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 font-oswald uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[0.7rem] sm:text-[0.8rem] leading-relaxed text-center">
-            <span className="text-white/70 font-normal">
+            
+            {/* Source Link */}
+            <a 
+              href={getSearchUrl(quote.source, `kniha ${quote.author}`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-white/70 font-normal transition-colors duration-300 hover:text-white border-b border-transparent hover:border-white/20 cursor-pointer"
+              title={`Vyhledat dílo: ${quote.source}`}
+            >
               {quote.source}
-            </span>
+            </a>
             
             {quote.year && quote.year !== '–' && (
               <>
                 <span className="hidden sm:inline-block text-white/20">•</span>
-                <span className="text-white/40 font-light tracking-widest">
+                {/* Year Link */}
+                <a 
+                  href={getSearchUrl(quote.year, 'rok události historie')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-white/40 font-light tracking-widest transition-colors duration-300 hover:text-white/80 border-b border-transparent hover:border-white/10 cursor-pointer"
+                  title={`Události roku ${quote.year}`}
+                >
                   {quote.year}
-                </span>
+                </a>
               </>
             )}
           </div>
