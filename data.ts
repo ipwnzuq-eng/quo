@@ -1,209 +1,211 @@
 import { Quote } from './types';
 
 export const quotesData: Quote[] = [
+  // --- Charles Bukowski ---
   {
     text: "Láska je dobrá pro ty, co jsou schopni zvládnout to psychický přetížení. Je to jako když se snažíš přenýst plnou popelnici na zádech přes valící se řeku chcanek.",
+    author: "Charles Bukowski",
     source: "Ženy",
     year: "1978"
   },
   {
     text: "Nezkoušej to.",
+    author: "Charles Bukowski",
     source: "Epitaf na náhrobku",
     year: "1994"
   },
   {
     text: "Chtěl jsem celý svět, nebo nic.",
+    author: "Charles Bukowski",
     source: "Poštovní úřad",
     year: "1971"
   },
   {
     text: "Pokud chcete něco udělat, jděte do toho naplno, jinak to ani nezačínejte.",
+    author: "Charles Bukowski",
     source: "Faktótum",
     year: "1975"
   },
   {
     text: "Osamělost je mým největším darem.",
+    author: "Charles Bukowski",
     source: "Rozhovor",
     year: "–"
   },
   {
     text: "Najdi, co miluješ, a nech to, ať tě to zabije.",
+    author: "Charles Bukowski",
     source: "Báseň / Dopis",
     year: "Nedatováno"
   },
   {
     text: "Svět patří těm, co se neposerou.",
+    author: "Charles Bukowski",
     source: "Zápisky starého prasáka",
     year: "1969"
   },
   {
     text: "Bude daleko hůř, než je. A taky daleko líp. Já si počkám.",
+    author: "Charles Bukowski",
     source: "Šunkový nářez",
     year: "1982"
   },
   {
-    text: "Skutečná osamělost nemusí být nutně omezena na to, když jste sami.",
-    source: "Kapitán odešel na oběd a námořníci převzali velení",
-    year: "1998"
-  },
-  {
     text: "Dva nejlepší vynálezy na světě jsou postel a atomovka. Postel tě spasí před životem a atomovka ti ho zprasí.",
+    author: "Charles Bukowski",
     source: "Všechny řitě světa i ta má",
     year: "1966"
   },
   {
-    text: "Skoro každý se rodí jako génius a pohřben je jako idiot.",
-    source: "Básně",
-    year: "Obecné moudro"
-  },
-  {
-    text: "Lidská rasa přeceňuje laskavost.",
-    source: "Ženy",
-    year: "1978"
-  },
-  {
     text: "V mém srdci je modrý pták, který se chce dostat ven, ale já jsem na něj tvrdej, říkám mu, zůstaň tam, nechci, aby tě někdo viděl.",
+    author: "Charles Bukowski",
     source: "Báseň: Modrý pták",
     year: "1992"
   },
   {
-    text: "Někteří lidé se nikdy nezblázní. Jaký hrozný život musí vést.",
-    source: "Báseň: Někteří lidé",
-    year: "–"
-  },
-  {
     text: "Nemocnice, vězení a bordely – to jsou univerzity života. Já mám několik titulů.",
+    author: "Charles Bukowski",
     source: "Rozhovor",
     year: "1980s"
   },
   {
-    text: "Když se stane něco špatného, piješ, abys na to zapomněl; když se stane něco dobrého, piješ, abys to oslavil; a když se nestane nic, piješ, aby se něco stalo.",
-    source: "Ženy",
-    year: "1978"
-  },
-  {
-    text: "Problém tohoto světa je, že inteligentní lidé jsou plní pochybností, zatímco ti hloupí jsou plní sebevědomí.",
-    source: "Dopis",
-    year: "–"
-  },
-  {
     text: "Jsme tu, abychom pili pivo. Jsme tu, abychom zabili válku. Jsme tu, abychom se smáli navzdory pravděpodobnosti.",
+    author: "Charles Bukowski",
     source: "Rozhovor pro Life Magazine",
     year: "1988"
   },
+
+  // --- Jack Kerouac (Beat Generation) ---
   {
-    text: "Čím míň věříš v život, tím míň máš co ztratit.",
-    source: "Poštovní úřad",
+    text: "Jediní lidé, kteří pro mě existují, jsou blázni, ti, kdo šílí po životě, šílí po řeči, šílí po spáse.",
+    author: "Jack Kerouac",
+    source: "Na cestě",
+    year: "1957"
+  },
+  {
+    text: "Nic za mnou, všechno přede mnou, jak už to tak na cestě bývá.",
+    author: "Jack Kerouac",
+    source: "Na cestě",
+    year: "1957"
+  },
+  {
+    text: "Jednou najdeš to, co hledáš. Nebo možná najdeš něco mnohem úžasnějšího.",
+    author: "Jack Kerouac",
+    source: "Dharmoví tuláci",
+    year: "1958"
+  },
+  {
+    text: "Štěstí spočívá v uvědomění si, že je to všechno jen velký podivný sen.",
+    author: "Jack Kerouac",
+    source: "Lonesome Traveler",
+    year: "1960"
+  },
+
+  // --- Ernest Hemingway (Lost Generation) ---
+  {
+    text: "Není nic vznešeného na tom být nadřazený svému bližnímu; skutečná vznešenost je být nadřazený svému dřívějšímu já.",
+    author: "Ernest Hemingway",
+    source: "True at First Light",
+    year: "1999 (posth.)"
+  },
+  {
+    text: "Piš opilý, edituj střízlivý.",
+    author: "Ernest Hemingway",
+    source: "Přisuzováno",
+    year: "–"
+  },
+  {
+    text: "Svět zlomí každého a mnozí jsou pak silní právě na těch zlomených místech.",
+    author: "Ernest Hemingway",
+    source: "Sbohem armádo",
+    year: "1929"
+  },
+  {
+    text: "Na psaní není nic těžkého. Prostě si sednete k psacímu stroji a krvácíte.",
+    author: "Ernest Hemingway",
+    source: "Rozhovor",
+    year: "–"
+  },
+  {
+    text: "Život každého člověka končí stejně. Jen detaily toho, jak žil a jak zemřel, odlišují jednoho od druhého.",
+    author: "Ernest Hemingway",
+    source: "Komu zvoní hrana",
+    year: "1940"
+  },
+
+  // --- Hunter S. Thompson (Gonzo) ---
+  {
+    text: "Kup si lístek, užij si jízdu... a jestli se to občas trochu zvrtne, tak je to jen součást kontraktu.",
+    author: "Hunter S. Thompson",
+    source: "Strach a hnus v Las Vegas",
     year: "1971"
   },
   {
-    text: "Duše svobodného člověka se dívá na svět dírou v kapse kalhot.",
-    source: "Erections, Ejaculations, Exhibitions...",
-    year: "1972"
+    text: "Byl jsem jeden z těch lidí, kteří jsou tak divní, že nemůžou fungovat v normálním světě, ale ne tak divní, aby je zavřeli.",
+    author: "Hunter S. Thompson",
+    source: "The Rum Diary",
+    year: "1998"
   },
   {
-    text: "Samozřejmě je možné milovat lidi, pokud je neznáte příliš dobře.",
-    source: "Rozhovor",
-    year: "–"
-  },
-  {
-    text: "Ukažte mi člověka, který žije sám a má věčně uklizenou kuchyň, a já vám ukážu člověka, co má v sobě něco hluboce zvráceného.",
-    source: "Faktótum",
-    year: "1975"
-  },
-  {
-    text: "Psi mají blechy, lidi mají problémy.",
-    source: "Láska je pes",
-    year: "1977"
-  },
-  {
-    text: "Jde o to, brát to, jak to přichází.",
-    source: "Ženy",
-    year: "1978"
-  },
-  {
-    text: "Musíš zemřít několikrát, než můžeš opravdu žít.",
-    source: "Lidé vypadají jako květiny konečně",
-    year: "2007"
-  },
-  {
-    text: "Láska je to, co se stane, když se mlha zvedne.",
-    source: "Báseň: Láska",
-    year: "–"
-  },
-  {
-    text: "Někdy ráno vstanete a říkáte si: Dneska to prostě nedám. Ale pak se podíváte do zrcadla a ten parchant na vás mrkne.",
-    source: "Zápisky starého prasáka",
-    year: "1969"
-  },
-  {
-    text: "Styl je odpověď na všechno. Svěží způsob, jak přistupovat k nudné nebo nebezpečné věci.",
-    source: "Báseň: Styl",
-    year: "–"
-  },
-  {
-    text: "Cesta do pekla je dlážděná dobrými úmysly, ale ta do nebe je plná zkurvených uzavírek.",
-    source: "Rozhovor",
-    year: "1984"
-  },
-  {
-    text: "Poezie je to, co se stane, když se nic jiného dít nemůže.",
-    source: "Básně",
-    year: "–"
-  },
-  {
-    text: "Lidstvo, to je parta ubožáků, co se snaží přežít v pekle, který si sami postavili.",
-    source: "Faktótum",
-    year: "1975"
-  },
-  {
-    text: "Genialita je schopnost říkat hluboký věci jednoduchým způsobem.",
-    source: "Zápisky starého prasáka",
-    year: "1969"
-  },
-  {
-    text: "Moji hrdinové jsou ti, co se ráno probudí, vědí, že to bude stát za hovno, a stejně vstanou.",
-    source: "Rozhovor",
-    year: "1987"
-  },
-  {
-    text: "Samota je občas ten nejlepší společník, aspoň vám nekecá do pití.",
-    source: "Ženy",
-    year: "1978"
-  },
-  {
-    text: "Život je jen řada malejch vítězství nad velkejma sračkama.",
-    source: "Poštovní úřad",
+    text: "Příliš divný na to, aby žil, příliš vzácný na to, aby zemřel.",
+    author: "Hunter S. Thompson",
+    source: "Strach a hnus v Las Vegas",
     year: "1971"
   },
+
+  // --- Franz Kafka (Existentialism) ---
   {
-    text: "Vzdělání je pro lidi to, co je pro psa obojek. Drží je to zkrátka, aby nekousali.",
-    source: "Šunkový nářez",
-    year: "1982"
+    text: "Jsem klec, která hledá ptáka.",
+    author: "Franz Kafka",
+    source: "Aforismy",
+    year: "1917"
   },
   {
-    text: "Svoboda znamená nemuset nic vysvětlovat lidem, který by to stejně nepochopili.",
-    source: "Dopis",
-    year: "1963"
+    text: "Cesty vznikají tím, že po nich jdeme.",
+    author: "Franz Kafka",
+    source: "Přisuzováno",
+    year: "–"
   },
   {
-    text: "Svět je plnej lidí, co čekají na něco, co nikdy nepřijde, a přitom si nevšimnou, že už to dávno propili.",
-    source: "Ženy",
-    year: "1978"
+    text: "Mládež je šťastná, protože má schopnost vidět krásu. Kdo si zachová schopnost vidět krásu, nikdy nezestárne.",
+    author: "Franz Kafka",
+    source: "Dopisy",
+    year: "–"
+  },
+
+  // --- George Orwell ---
+  {
+    text: "Ve vší pravděpodobnosti se nestane nic, co si představujete.",
+    author: "George Orwell",
+    source: "Nadechnout se",
+    year: "1939"
   },
   {
-    text: "Psaní je jako hovno. Musíte se na to soustředit, jinak to nevyjde.",
-    source: "Rozhovor",
-    year: "1981"
+    text: "Kdo ovládá minulost, ovládá budoucnost. Kdo ovládá přítomnost, ovládá minulost.",
+    author: "George Orwell",
+    source: "1984",
+    year: "1949"
+  },
+
+  // --- Albert Camus ---
+  {
+    text: "Člověk je jediný tvor, který odmítá být tím, čím je.",
+    author: "Albert Camus",
+    source: "Člověk revoltující",
+    year: "1951"
   },
   {
-    text: "Základem všeho je vydržet. Většina lidí to vzdá těsně předtím, než se stane zázrak nebo než přijde exekutor.",
-    source: "Faktótum",
-    year: "1975"
+    text: "Uprostřed zimy jsem v sobě konečně objevil nezničitelné léto.",
+    author: "Albert Camus",
+    source: "Návrat do Tipasy",
+    year: "1952"
   },
+  
+   // --- Oscar Wilde ---
   {
-    text: "Dobrý spisovatel ví, kdy přestat. Ten skvělý ví, kdy ani nezačínat.",
-    source: "Zápisky starého prasáka",
-    year: "1969"
+    text: "Všichni vězíme v bahně, ale někteří z nás se dívají ke hvězdám.",
+    author: "Oscar Wilde",
+    source: "Vějíř lady Windermerové",
+    year: "1892"
   }
 ];

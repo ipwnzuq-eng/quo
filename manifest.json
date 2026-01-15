@@ -1,0 +1,23 @@
+{
+  "short_name": "Rebels",
+  "name": "Literary Rebels Quotes",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3556/3556758.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3556/3556758.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#050505",
+  "background_color": "#050505",
+  "orientation": "portrait",
+  "scope": "/",
+  "description": "Syrové citáty od autorů jako Bukowski, Hemingway a dalších."
+}

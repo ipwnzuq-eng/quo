@@ -15,6 +15,27 @@ const App: React.FC = () => {
   const [lastIndex, setLastIndex] = useState(initialIndex);
   const [burstTrigger, setBurstTrigger] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    // Listen for PWA install prompt
+    const handler = (e: any) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstallClick = useCallback(async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setInstallPrompt(null);
+    }
+  }, [installPrompt]);
 
   const triggerNewQuote = useCallback(() => {
     if (isAnimating || isSearchLoading) return;
@@ -43,6 +64,11 @@ const App: React.FC = () => {
     e.stopPropagation();
     if (isSearchLoading || isAnimating) return;
 
+    if (!navigator.onLine) {
+        alert("Pro AI hledání je potřeba připojení k internetu. Čtěte zatím z offline archivu.");
+        return;
+    }
+
     setIsSearchLoading(true);
     setIsVisible(false);
 
@@ -50,7 +76,7 @@ const App: React.FC = () => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: "Najdi jeden unikátní a drsný citát Charlese Bukowského v češtině. Preferuj kratší a údernější citáty (do 150 znaků). Výsledek vrať přesně ve formátu 'Citát | Zdroj | Rok'. Nepoužívej uvozovky v textu citátu.",
+        contents: "Najdi jeden unikátní, existenciální nebo drsný citát od autorů jako Charles Bukowski, Jack Kerouac, Ernest Hemingway, Hunter S. Thompson, Franz Kafka nebo Albert Camus v češtině. Vyber něco méně známého. Výsledek vrať přesně ve formátu 'Citát | Autor | Zdroj | Rok'. Nepoužívej uvozovky v textu citátu.",
         config: {
           tools: [{ googleSearch: {} }],
         },
@@ -65,12 +91,13 @@ const App: React.FC = () => {
           uri: chunk.web?.uri || '#'
         }));
 
-      // Basic parsing of "Text | Source | Year"
+      // Parsing "Text | Author | Source | Year"
       const parts = text.split('|').map(p => p.trim());
       const aiQuote: Quote = {
-        text: parts[0] || "Někdy prostě jen zíráte do zdi a zeď zírá na vás. A oba víte, že má pravdu.",
-        source: parts[1] || "Z hlubin webu",
-        year: parts[2] || "Dnes",
+        text: parts[0] || "Někdy prostě jen zíráte do zdi a zeď zírá na vás.",
+        author: parts[1] || "Neznámý autor",
+        source: parts[2] || "Z hlubin webu",
+        year: parts[3] || "Dnes",
         isAI: true,
         sources: sources.length > 0 ? sources : undefined
       };
@@ -114,7 +141,7 @@ const App: React.FC = () => {
 
   return (
     <div 
-      className="relative w-full h-screen bg-bukowski-bg text-bukowski-text flex flex-col justify-center items-center overflow-hidden cursor-pointer select-none touch-manipulation"
+      className="relative w-full h-[100dvh] bg-bukowski-bg text-bukowski-text flex flex-col justify-center items-center overflow-hidden cursor-pointer select-none touch-manipulation"
       onClick={triggerNewQuote}
       onMouseMove={handleMouseMove}
       onTouchMove={handleMouseMove}
@@ -135,20 +162,45 @@ const App: React.FC = () => {
         <QuoteDisplay quote={currentQuote} isVisible={isVisible} />
       )}
       
-      {/* Tap Hint */}
+      {/* Tap Hint - Adjusted for Safe Areas */}
       {!isSearchLoading && (
-        <div className="absolute bottom-[max(2rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-10 font-oswald text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-[#444] pointer-events-none animate-subtle-pulse whitespace-nowrap">
+        <div className="absolute left-1/2 -translate-x-1/2 z-10 font-oswald text-[0.6rem] sm:text-[0.7rem] uppercase tracking-[0.2em] text-[#444] pointer-events-none animate-subtle-pulse whitespace-nowrap"
+             style={{ bottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
           Další lok
         </div>
       )}
 
-      {/* AI Search Button */}
+      {/* PWA Install Button (Left Bottom) */}
+      {installPrompt && (
+        <button
+          onClick={handleInstallClick}
+          className="fixed z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white/20 hover:text-white/60 hover:border-white/20 transition-all active:scale-95 group touch-manipulation"
+          style={{ 
+            bottom: 'max(1.5rem, env(safe-area-inset-bottom))', 
+            left: 'max(1.5rem, env(safe-area-inset-left))' 
+          }}
+          title="Nainstalovat aplikaci"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+      )}
+
+      {/* AI Search Button (Right Bottom) */}
       <button 
         onClick={searchAIQuote}
-        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-center text-white/30 hover:text-white/80 hover:border-white/40 transition-all active:scale-95 group"
+        className="fixed z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-center text-white/30 hover:text-white/80 hover:border-white/40 transition-all active:scale-95 group touch-manipulation"
+        style={{ 
+          bottom: 'max(1.5rem, env(safe-area-inset-bottom))', 
+          right: 'max(1.5rem, env(safe-area-inset-right))' 
+        }}
         title="Objevit zapomenutý citát (AI)"
+        aria-label="AI Search"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-5 sm:h-5 group-hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6 group-hover:scale-110 transition-transform">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           <path d="M11 8v6"></path>

@@ -9,69 +9,108 @@ interface QuoteDisplayProps {
 const QuoteDisplay: React.FC<QuoteDisplayProps> = ({ quote, isVisible }) => {
   if (!quote) return null;
 
-  // Dynamická úprava velikosti písma podle délky citátu
-  const isLongQuote = quote.text.length > 180;
+  // Logic to determine text sizing based on length
+  const len = quote.text.length;
+  const isVeryLong = len > 220;
+  const isLong = len > 120;
+  const isShort = len < 60;
 
   return (
-    <div className="relative z-10 w-full max-w-[720px] px-6 sm:px-10 flex flex-col justify-center items-center text-center drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+    <div className="relative z-10 w-full flex flex-col justify-center items-center text-center 
+      px-5 xs:px-8 sm:px-16 md:px-24 
+      max-w-[100%] md:max-w-4xl lg:max-w-5xl"
+    >
       
-      {/* AI Badge */}
-      {quote.isAI && (
-        <div className={`mb-6 font-oswald text-[0.6rem] uppercase tracking-widest text-white/20 border border-white/10 px-2 py-0.5 rounded transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          Objeveno skrze AI
-        </div>
-      )}
-
-      {/* Quote Text */}
+      {/* AI Badge - Ultra subtle */}
       <div 
         className={`
-          font-lora leading-[1.4] font-normal mb-8 text-bukowski-text hyphens-auto
-          will-change-[opacity,transform,filter]
-          transition-all duration-[1000ms] cubic-bezier(0.25,0.4,0.25,1)
-          ${isLongQuote ? 'text-[clamp(1rem,4.2vw,1.6rem)]' : 'text-[clamp(1.2rem,5.5vw,2.1rem)]'}
-          ${isVisible ? 'opacity-100 scale-100 translate-y-0 blur-0' : 'opacity-0 scale-95 translate-y-4 blur-sm'}
+          mb-6 sm:mb-8 flex justify-center transition-all duration-1000 ease-out
+          ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}
         `}
-        style={{ wordBreak: 'break-word' }}
+      >
+        {quote.isAI && (
+          <span className="font-oswald text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-white/30 px-3 py-1 border-b border-white/5 shadow-[0_1px_10px_rgba(0,0,0,0.5)]">
+            AI Discovery
+          </span>
+        )}
+      </div>
+
+      {/* Quote Text - Cinematic Reveal */}
+      <div 
+        className={`
+          relative font-lora font-normal text-bukowski-text hyphens-auto
+          will-change-[opacity,filter,transform]
+          transition-all duration-[1400ms] cubic-bezier(0.2, 0.0, 0.2, 1)
+          ${isVeryLong ? 'text-[clamp(1rem,3.5vw,1.4rem)] leading-[1.6]' : 
+            isLong ? 'text-[clamp(1.1rem,4vw,1.8rem)] leading-[1.5]' : 
+            isShort ? 'text-[clamp(1.6rem,6vw,2.8rem)] leading-[1.3]' : 
+            'text-[clamp(1.3rem,5vw,2.2rem)] leading-[1.45]'}
+          ${isVisible 
+            ? 'opacity-100 blur-0 scale-100 translate-y-0' 
+            : 'opacity-0 blur-md scale-[0.98] translate-y-2'}
+        `}
+        style={{ 
+          wordBreak: 'break-word', 
+          textWrap: 'balance',
+          textShadow: '0 4px 24px rgba(0,0,0,0.6)' 
+        }}
       >
         “{quote.text}”
       </div>
 
-      {/* Author and Source Block */}
+      {/* Author and Source Block - Redesigned for hierarchy */}
       <div 
         className={`
-          flex flex-col items-center w-full
-          transition-all duration-1000 ease-out delay-[200ms]
-          ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+          flex flex-col items-center w-full mt-8 sm:mt-12
+          transition-all duration-[1200ms] ease-out delay-[400ms]
+          ${isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-4 blur-sm'}
         `}
       >
-        {/* Author Name - Enhanced Visibility */}
-        <div className="font-lora italic font-medium text-white/90 text-[clamp(1.1rem,4vw,1.4rem)] mb-1 sm:mb-2 tracking-tight">
-          — Charles Bukowski
+        {/* Author Name - Bolder and brighter */}
+        <div className="font-lora italic font-medium text-white/90 text-[clamp(1.1rem,4vw,1.5rem)] mb-4 tracking-tight drop-shadow-md">
+          — {quote.author}
         </div>
         
-        {/* Source Metadata - Optimized for all screens */}
-        <div className="font-oswald text-[clamp(0.6rem,2.5vw,0.85rem)] text-bukowski-meta uppercase tracking-[0.25em] border-t border-white/10 pt-2 px-2 sm:px-6 max-w-[90vw] leading-relaxed">
-          {quote.source} {quote.year && quote.year !== '–' ? <span className="opacity-40 ml-1">({quote.year})</span> : ''}
-        </div>
+        {/* Metadata Container */}
+        <div className="relative flex flex-col items-center w-full max-w-[90%] sm:max-w-2xl">
+          
+          {/* Subtle Divider */}
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent mb-4"></div>
 
-        {/* AI Sources / Grounding */}
-        {quote.isAI && quote.sources && quote.sources.length > 0 && (
-          <div className="mt-6 flex flex-wrap justify-center gap-x-2 gap-y-2 max-w-xs px-4">
-            <span className="text-[8px] text-white/10 uppercase tracking-widest w-full mb-1">Ověřeno v archivech:</span>
-            {quote.sources.map((src, idx) => (
-              <a 
-                key={idx} 
-                href={src.uri} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[8px] sm:text-[9px] text-white/30 hover:text-white/80 border border-white/5 px-2 py-0.5 rounded-sm bg-white/5 transition-all whitespace-nowrap"
-                onClick={e => e.stopPropagation()}
-              >
-                {src.title.length > 15 ? src.title.substring(0, 12) + '...' : src.title}
-              </a>
-            ))}
+          {/* Source & Year - Stacked on mobile, Row on Desktop */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 font-oswald uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[0.7rem] sm:text-[0.8rem] leading-relaxed text-center">
+            <span className="text-white/70 font-normal">
+              {quote.source}
+            </span>
+            
+            {quote.year && quote.year !== '–' && (
+              <>
+                <span className="hidden sm:inline-block text-white/20">•</span>
+                <span className="text-white/40 font-light tracking-widest">
+                  {quote.year}
+                </span>
+              </>
+            )}
           </div>
-        )}
+
+          {/* AI Sources Links - Minimalist pills */}
+          {quote.isAI && quote.sources && quote.sources.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-2 mt-4 pt-2 border-t border-white/5 w-full max-w-[300px]">
+              {quote.sources.map((src, idx) => (
+                <a 
+                  key={idx} 
+                  href={src.uri} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[9px] text-white/30 hover:text-white/80 hover:bg-white/5 px-2 py-1 rounded transition-all duration-300 border border-transparent hover:border-white/10"
+                  onClick={e => e.stopPropagation()}
+                >
+                  {src.title.length > 25 ? src.title.substring(0, 22) + '...' : src.title}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
     </div>

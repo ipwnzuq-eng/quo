@@ -17,38 +17,41 @@ const SmokeBackground: React.FC<SmokeBackgroundProps> = ({
 
   return (
     <>
-      {/* Noise Texture */}
+      {/* Noise Texture - Fixed coverage */}
       <div 
-        className="absolute top-0 left-0 w-full h-full pointer-events-none z-[3] opacity-[0.05]"
+        className="absolute inset-0 w-full h-full pointer-events-none z-[3] opacity-[0.05]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat'
         }}
       />
 
       {/* Fog/Smoke Layers Container */}
       <div className={`absolute w-full h-full overflow-hidden z-[1] pointer-events-none transition-opacity duration-1000 ${isSearching ? 'opacity-80' : 'opacity-100'}`}>
-        {/* Parallax Wrapper for Layer 1 */}
+        {/* Layer 1 - Slow Deep Fog */}
         <div 
-          className="absolute inset-0 transition-transform duration-1000 ease-out will-change-transform"
+          className="absolute inset-[-50%] w-[200%] h-[200%] transition-transform duration-1000 ease-out will-change-transform"
           style={{ transform: `translate3d(${offsetX * 0.5}px, ${offsetY * 0.5}px, 0)` }}
         >
           <div 
-            className={`absolute h-[100vh] w-[300vw] z-[1] opacity-40 animate-fog will-change-transform ${isSearching ? 'duration-[30s]' : ''}`}
+            className={`absolute top-0 left-0 w-full h-full z-[1] opacity-40 animate-fog will-change-transform ${isSearching ? 'duration-[30s]' : ''}`}
             style={{
-              background: 'radial-gradient(ellipse at center, rgba(80,80,80,0.2) 0%, rgba(0,0,0,0) 70%)'
+              background: 'radial-gradient(circle at center, rgba(80,80,80,0.2) 0%, rgba(0,0,0,0) 70%)',
+              backgroundSize: '100% 100%'
             }}
           />
         </div>
 
-        {/* Parallax Wrapper for Layer 2 */}
+        {/* Layer 2 - Faster Lighter Smoke */}
         <div 
-          className="absolute inset-0 transition-transform duration-[1200ms] ease-out will-change-transform"
+          className="absolute inset-[-50%] w-[200%] h-[200%] transition-transform duration-[1200ms] ease-out will-change-transform"
           style={{ transform: `translate3d(${offsetX * -0.8}px, ${offsetY * -0.8}px, 0)` }}
         >
           <div 
-            className={`absolute h-[100vh] w-[300vw] z-[2] opacity-20 animate-fog-reverse scale-125 will-change-transform ${isSearching ? 'duration-[20s]' : ''}`}
+            className={`absolute top-0 left-0 w-full h-full z-[2] opacity-20 animate-fog-reverse scale-125 will-change-transform ${isSearching ? 'duration-[20s]' : ''}`}
             style={{
-              background: 'radial-gradient(ellipse at center, rgba(120,120,120,0.15) 0%, rgba(0,0,0,0) 60%)'
+              background: 'radial-gradient(circle at center, rgba(120,120,120,0.15) 0%, rgba(0,0,0,0) 60%)',
+              backgroundSize: '100% 100%'
             }}
           />
         </div>

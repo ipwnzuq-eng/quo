@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Bukowski – Smoke & Quotes</title>
-    <meta name="description" content="Drsné citáty Charlese Bukowskiho s atmosférou">
-    <meta name="theme-color" content="#000000">
+    <title>Literary Rebels – Bukowski, Kerouac & Others</title>
+    <meta name="description" content="Syrové citáty od autorů jako Bukowski, Hemingway, Kerouac a dalších. Atmosférický generátor moudrosti.">
+    <meta name="theme-color" content="#050505">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- iOS PWA Capabilties -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Rebels">
+    
+    <!-- Icons (using placeholder for now, ideally local files) -->
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3556/3556758.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3556/3556758.png">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,16 +28,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300&display=swap" rel="stylesheet">
     
     <style>
-        body {
+        :root {
+            --sat: env(safe-area-inset-top);
+            --sab: env(safe-area-inset-bottom);
+            --sal: env(safe-area-inset-left);
+            --sar: env(safe-area-inset-right);
+        }
+
+        html, body {
+            height: 100%;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            width: 100%;
+            margin: 0;
+            padding: 0;
             background-color: #050505;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             overflow: hidden;
+            overscroll-behavior: none; /* Prevents rubber-banding on iOS/Mac */
+            touch-action: manipulation;
+        }
+
+        #root {
+            height: 100%;
+            width: 100%;
         }
 
         /* Custom Keyframes for Fog Animation */
         @keyframes fog {
-            0% { transform: translate3d(-200vw, 0, 0); }
+            0% { transform: translate3d(-50%, 0, 0); }
             100% { transform: translate3d(0, 0, 0); }
         }
 
@@ -49,7 +78,7 @@
             animation: subtle-pulse 4s infinite;
         }
 
-        /* Ember / Particle Animation - Improved with wobble and flicker */
+        /* Ember / Particle Animation */
         @keyframes ember-float {
             0% {
                 opacity: 0;
@@ -82,6 +111,10 @@
       tailwind.config = {
         theme: {
           extend: {
+            screens: {
+              'xs': '375px', // Support for small phones like iPhone SE
+              '3xl': '1920px', // Support for 4K/Large Desktop
+            },
             fontFamily: {
               lora: ['Lora', 'serif'],
               oswald: ['Oswald', 'sans-serif'],
