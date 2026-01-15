@@ -49,19 +49,33 @@
             animation: subtle-pulse 4s infinite;
         }
 
-        /* Ember / Particle Animation */
+        /* Ember / Particle Animation - Improved with wobble and flicker */
         @keyframes ember-float {
             0% {
                 opacity: 0;
-                transform: translate(0, 0) scale(1);
+                transform: translate(0, 0) scale(0) rotate(0deg);
             }
-            10% {
-                opacity: 1;
+            15% {
+                opacity: var(--max-opacity, 1);
+                transform: translate(calc(var(--drift-x) * 0.1), calc(var(--drift-y) * 0.1)) scale(1.2);
+            }
+            50% {
+                opacity: var(--max-opacity, 0.8);
+                transform: translate(calc(var(--drift-x) * 0.5 + 10px), calc(var(--drift-y) * 0.5)) scale(1) rotate(180deg);
             }
             100% {
                 opacity: 0;
-                transform: translate(var(--drift-x), var(--drift-y)) scale(0);
+                transform: translate(var(--drift-x), var(--drift-y)) scale(0.2) rotate(360deg);
             }
+        }
+
+        @keyframes ember-flicker {
+            0%, 100% { filter: brightness(1) blur(0px); }
+            50% { filter: brightness(1.5) blur(1px); }
+        }
+        
+        .particle {
+            will-change: transform, opacity;
         }
     </style>
     <script>
